@@ -6,10 +6,12 @@ import scala.io.BufferedSource
 object Day02Part1 extends App {
 
     def solve(in: Day02Input): Int = {
-        in.lines.count(line => {
-            val ds = diffs(line)
-            allSmall(ds) && monotonic(ds)
-        })
+        in.lines.count(safe)
+    }
+
+    def safe(line: List[Int]): Boolean = {
+        val ds = diffs(line)
+        allSmall(ds) && monotonic(ds)
     }
 
     def diffs(line: List[Int]): List[Int] =
